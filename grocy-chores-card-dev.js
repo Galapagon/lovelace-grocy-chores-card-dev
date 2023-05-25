@@ -208,9 +208,8 @@ class GrocyChoresCard extends LitElement {
                         ${this.show_create_task ? this._renderAddTaskButton() : nothing}
                     </h1>
             <h2>
-              <form action="/action_page.php">
                 <label for="cars">Choose a car:</label>
-                <select name="cars" id="cars">
+                <select name="cars" id="cars" onchange="this._getUserId">
                     <option value="1">Admin</option>
                     <option value="2">Galapagon</option>
                     <option value="3">TriSarahTops</option>
@@ -574,10 +573,10 @@ if (this.remove_filter) {
 return true;
 }
 
-_checkMatchUserFilter(item) {
+/*_checkMatchUserFilter(item) {
 let user = this.filter_user === "current" ? this._getUserId() : this.filter_user;
 return item.__user_id && item.__user_id === user;
-}
+}*/
 
 _checkMatchTaskCategoryFilter(item) {
 let filter = [].concat(this.filter_task_category);
@@ -664,13 +663,15 @@ return chores;
 }
 
 _getUserId() {
-if(typeof this.userId === "object") {
-    return this.userId = parseInt(document.getElementsByName("cars")[0].value);
+    console.log("getUserID-pre"+this.userID);
+/*if(typeof this.userId === "object") {
+    return */this.userId = document.getElementById("cars");
+    console.log("UserID="+this.userID);
 //    return this.userId[this._hass?.user?.name] ?? this.userId.default ?? 1;
 }/* else {
     return this.userId ?? 1;
-}*/
 }
+}*/
 
 _trackChore(choreId, choreName) {
 // Hide the chore on the next render, for better visual feedback
